@@ -8,9 +8,10 @@ const router = express.Router()
 //         updateData,
 //         deleteData} = require('../controllers/todo')
 
-const { addUser } = require('../controllers/user')
+const { addUser, login } = require('../controllers/user')
 
 router.post('/register', addUser)
+router.post('/login', login)
 
 // router.get('/', getData)
 // router.get('/users/:id', getDetail)
