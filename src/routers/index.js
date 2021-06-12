@@ -2,13 +2,9 @@ const express = require('express')
 
 const router = express.Router()
 
-// const { getData, 
-//         getDetail, 
-//         addData, 
-//         updateData,
-//         deleteData} = require('../controllers/todo')
-
 const { auth } = require('../middleware/auth')
+
+// User
 
 const { register, 
         login,
@@ -17,6 +13,17 @@ const { register,
         editProfile, 
         deleteUser} = require('../controllers/user')
 
+// Feed
+
+const { addFeed,
+        feedByFollow,
+        feeds,
+        like, 
+        comments,
+        addComment} = require('../controllers/feed')
+
+//Route User
+
 router.post('/register', register)
 router.post('/login', login)
 router.get('/users', getUsers)
@@ -24,10 +31,13 @@ router.get('/followers/:id', auth, getFollow)
 router.patch('/user', auth, editProfile)
 router.delete('/user/:id', deleteUser)
 
-// router.get('/', getData)
-// router.get('/users/:id', getDetail)
-// router.post('/register', addData)
-// router.patch('/users/:id', updateData)
-// router.delete('/users/:id', deleteData)
+// Route Feed
+
+router.post('/feed', auth, addFeed)
+router.post('/comments', auth, addComment)
+router.patch('/like', auth, like)
+router.get('/feed', auth, feedByFollow)
+router.get('/feeds', auth, feeds)
+router.get('/comments/:id', auth, comments)
 
 module.exports = router

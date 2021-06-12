@@ -232,7 +232,7 @@ exports.getFollow = async (req, res) => {
 
         res.status({
             status: 'failed',
-            message: 'Server Error'            
+            message: 'Server Error'
         })
     }
 

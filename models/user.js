@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { use } = require('../src/routers');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -23,8 +24,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           name: 'idFollower'
         }
+      })      
+      user.hasMany(models.feed, {
+        as: 'posts',
+        foreignKey: {
+          name: 'idUser'
+        }
       })
-      
+
+
     }
   };
   user.init({
