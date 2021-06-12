@@ -8,10 +8,21 @@ const router = express.Router()
 //         updateData,
 //         deleteData} = require('../controllers/todo')
 
-const { addUser, login } = require('../controllers/user')
+const { auth } = require('../middleware/auth')
 
-router.post('/register', addUser)
+const { register, 
+        login,
+        getUsers, 
+        getFollow,
+        editProfile, 
+        deleteUser} = require('../controllers/user')
+
+router.post('/register', register)
 router.post('/login', login)
+router.get('/users', getUsers)
+router.get('/followers/:id', auth, getFollow)
+router.patch('/user', auth, editProfile)
+router.delete('/user/:id', deleteUser)
 
 // router.get('/', getData)
 // router.get('/users/:id', getDetail)
