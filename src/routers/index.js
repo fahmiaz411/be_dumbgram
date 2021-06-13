@@ -22,6 +22,10 @@ const { addFeed,
         comments,
         addComment} = require('../controllers/feed')
 
+// Message
+
+const { sendMessage, messageWithId } = require('../controllers/message')
+
 //Route User
 
 router.post('/register', register)
@@ -39,5 +43,10 @@ router.patch('/like', auth, like)
 router.get('/feed', auth, feedByFollow)
 router.get('/feeds', auth, feeds)
 router.get('/comments/:id', auth, comments)
+
+// Route Message
+
+router.post('/message/:id', auth, sendMessage)
+router.get('/message/:id', auth, messageWithId)
 
 module.exports = router
